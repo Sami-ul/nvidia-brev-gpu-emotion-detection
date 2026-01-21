@@ -41,13 +41,13 @@ test_transforms = transforms.Compose([
 train_dataset = ImageFolder(root=f"{data_filepath}/train", transform=train_transforms)
 test_dataset = ImageFolder(root=f"{data_filepath}/test", transform=test_transforms)
 
-BATCH_SIZE=128
+BATCH_SIZE=64
 
 train_loader = DataLoader(
     train_dataset,
     batch_size=BATCH_SIZE,
     shuffle=True,
-    num_workers=4,
+    num_workers=2,
     pin_memory=True
     
 )
@@ -56,7 +56,7 @@ test_loader = DataLoader(
     test_dataset,
     batch_size=BATCH_SIZE,
     shuffle=False,
-    num_workers=4,
+    num_workers=2,
     pin_memory=True
 )
 
