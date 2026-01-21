@@ -41,20 +41,23 @@ test_transforms = transforms.Compose([
 train_dataset = ImageFolder(root=f"{data_filepath}\\train", transform=train_transforms)
 test_dataset = ImageFolder(root=f"{data_filepath}\\test", transform=test_transforms)
 
-BATCH_SIZE=32
+BATCH_SIZE=128
 
 train_loader = DataLoader(
     train_dataset,
     batch_size=BATCH_SIZE,
     shuffle=True,
-    num_workers=2
+    num_workers=4,
+    pin_memory=True
+    
 )
 
 test_loader = DataLoader(
     test_dataset,
     batch_size=BATCH_SIZE,
     shuffle=False,
-    num_workers=2
+    num_workers=4,
+    pin_memory=True
 )
 
 
@@ -115,7 +118,10 @@ def evaluate(model, loader, device=torch.device('cpu')):
             correct += (predicted == labels).sum().item()
     return correct / total
 if __name__ == '__main__':
-    # Time one epoch first
+    print(f"Classes: {train_dataset.classes}")
+    print(f"Training samples: {len(train_dataset)}")
+    print(f"Test samples: {len(test_dataset)}")
+
     best_acc = 0.0
     for epoch in range(25):
         start = time.time()

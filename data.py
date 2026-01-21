@@ -1,6 +1,7 @@
 import kagglehub
+from dotenv import set_key
 
-# Download latest version
 path = kagglehub.dataset_download("ananthu017/emotion-detection-fer")
 
-print("Path to dataset files:", path)
+set_key(dotenv_path=".env", key_to_set="DATASET_PATH", value_to_set=path)
+print("Set DATASET_PATH env variable to: ", path)
