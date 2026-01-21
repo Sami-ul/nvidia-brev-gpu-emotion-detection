@@ -45,3 +45,13 @@ You have 1 instances in Org NCA-52c9-24166
 8. Download the dataset using `python3 data.py`
 
 9. Train the neural network with `python3 train.py`
+
+10. To monitor the training you can install the following:
+```
+sudo apt update
+sudo apt install nvidia-utils-470  
+sudo apt install nvidia-driver-470
+sudo reboot
+nvidia-smi -l 1
+```
+

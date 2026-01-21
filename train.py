@@ -87,13 +87,19 @@ class Net(nn.Module):
             nn.Conv2d(128, 256, 3, padding=1),
             nn.BatchNorm2d(256),
             nn.ReLU(),
+            nn.MaxPool2d(2, 2),
+            
+            nn.Conv2d(256, 512, 3, padding=1),
+            nn.BatchNorm2d(512),
+            nn.ReLU(),
             nn.MaxPool2d(2, 2)
+
         )
         self.classifier = nn.Sequential( # 2d->1d and classifies emotions
             nn.Flatten(),
-            nn.Linear(256 * 14 * 14, 512),
+            nn.Linear(512 * 14 * 14, 512),
             nn.ReLU(),
-            nn.Dropout(0.5),
+            nn.Dropout(0.3),
             nn.Linear(512, 7)
         )
         
@@ -104,7 +110,9 @@ class Net(nn.Module):
 net = Net().to(device)
 
 criterion = nn.CrossEntropyLoss()
-optimizer = optim.Adam(net.parameters(), lr=0.001)
+optimizer = optim.Adam(net.parameters(), lr=0.001, weight_decay=1e-4)
+scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=7, gamma=0.1) 
+
 def evaluate(model, loader, device=torch.device('cpu')):
     model.eval()
     correct = 0
@@ -141,7 +149,7 @@ if __name__ == '__main__':
             if i % 200 == 199: 
                 print(f'[{epoch+1}, {i+1:5d}] loss: {running_loss/200:.3f}')
                 running_loss = 0.0
-        
+        scheduler.step()
         epoch_time = time.time() - start
         print(f'Epoch {epoch+1} took {epoch_time:.1f}s')
         val_acc = evaluate(net, test_loader, device)
