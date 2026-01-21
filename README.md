@@ -11,6 +11,14 @@ The training script uses PyTorch and sets up transforms, convolutional layers an
 
 1. Open the Brev console and ensure you have credits, navigate to the T4 GPU option. [Create a new T4 environment here.](https://brev.nvidia.com/environment/new?gpu=T4)
 
-2. Select one of the GPUs and start the instance in VM mode, this project will not need Jupyter.
+2. Select one of the GPUs and start the instance in VM mode, this project will not need Jupyter. You will name it here and use this name later.
 
-3. You will need wsl, if you already have it installed you can just type `wsl` into your terminal. Once the Brev instance is running.
+3. You will need wsl, if you already have it installed you can just type `wsl` into your terminal. Once the Brev instance is running, you can open `wsl` and install the brev cli `sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/brevdev/brev-cli/main/bin/install-latest.sh)"`
+
+4. You can then run `brev login` and log in. Then you can do `brev shell <gpu-name>`.
+
+5. Then, you must set up a SSH key on the server with: `ssh-keygen -t ed25519 -C "your-email@example.com"`. Copy the `cat ~/.ssh/id_ed25519.pub` and paste it in GitHub > Settings > SSH and GPG keys > new SSH key.
+
+6. You can then clone the repository the code is on using ssh `git clone git@github.com:Sami-ul/nvidia-brev-gpu-emotion-detection.git` and navigate to the directory with `cd nvidia-brev-gpu-emotion-detection`.
+
+7. Install dependencies with `pip install -r requirements.txt`
