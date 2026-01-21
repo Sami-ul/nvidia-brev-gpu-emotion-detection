@@ -55,3 +55,5 @@ sudo reboot
 nvidia-smi -l 1
 ```
 
+11. You can then use the Brev website to delete your instance and stop incurring costs.
+
