@@ -22,3 +22,7 @@ The training script uses PyTorch and sets up transforms, convolutional layers an
 6. You can then clone the repository the code is on using ssh `git clone git@github.com:Sami-ul/nvidia-brev-gpu-emotion-detection.git` and navigate to the directory with `cd nvidia-brev-gpu-emotion-detection`.
 
 7. Install dependencies with `pip install -r requirements.txt`
+
+8. Download the dataset using `python3 data.py`
+
+9. Train the neural network with `python3 train.py`
