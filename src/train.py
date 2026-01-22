@@ -5,6 +5,8 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch
 import torch.optim as optim
+from torch.amp.autocast_mode import autocast
+from torch.amp.grad_scaler import GradScaler
 from dotenv import load_dotenv
 import os
 import time
@@ -15,7 +17,7 @@ else:
     raise RuntimeError("No GPU found")
 
 device = torch.device("cuda:0")
-
+torch.backends.cudnn.benchmark = True
 load_dotenv()
 
 data_filepath = os.getenv("DATASET_PATH")
@@ -41,13 +43,13 @@ test_transforms = transforms.Compose([
 train_dataset = ImageFolder(root=f"{data_filepath}/train", transform=train_transforms)
 test_dataset = ImageFolder(root=f"{data_filepath}/test", transform=test_transforms)
 
-BATCH_SIZE=64
+BATCH_SIZE=128
 
 train_loader = DataLoader(
     train_dataset,
     batch_size=BATCH_SIZE,
     shuffle=True,
-    num_workers=2,
+    num_workers=4,
     pin_memory=True
     
 )
@@ -56,7 +58,7 @@ test_loader = DataLoader(
     test_dataset,
     batch_size=BATCH_SIZE,
     shuffle=False,
-    num_workers=2,
+    num_workers=4,
     pin_memory=True
 )
 
@@ -112,7 +114,7 @@ net = Net().to(device)
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(net.parameters(), lr=0.001, weight_decay=1e-4)
 scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=7, gamma=0.1) 
-
+scaler = GradScaler()
 def evaluate(model, loader, device=torch.device('cpu')):
     model.eval()
     correct = 0
@@ -140,10 +142,12 @@ if __name__ == '__main__':
             inputs, labels = inputs.to(device), labels.to(device)
             optimizer.zero_grad()
             
-            outputs = net(inputs)
-            loss = criterion(outputs, labels)
-            loss.backward()
-            optimizer.step()
+            with autocast(device_type='cuda'):
+                outputs = net(inputs)
+                loss = criterion(outputs, labels)
+            scaler.scale(loss).backward()
+            scaler.step(optimizer)
+            scaler.update()
             
             running_loss += loss.item()
             if i % 200 == 199: 

@@ -4,7 +4,7 @@
 
 The data used was from Kaggle, `data.py` details how to download it. The dataset contains a test and train set of various images of human faces and is labeled by emotions. PyTorch's ImageFolder library makes it very easy to convert this into a usable dataset.
 
-The training script uses PyTorch and sets up transforms, convolutional layers and a classifier layer. We use a batch size of 64 since an NVIDIA T4 GPU can handle it and can speed up our training significantly. We can also have number of workers for data loading be 2, since we are using Brev. The transforms are applied to the dataset to "generate" more data by applying natural transformations. For example, mirroring a face about the y axis does not modify the emotion shown on the face. The convolutional layers simplify the image down to its most critical features, while the classification layer converts the 2d image into a 1d tensor of numbers and outputs one of 7 emotion classes.
+The training script uses PyTorch and sets up transforms, convolutional layers and a classifier layer. We use a batch size of 64 since an NVIDIA L4 GPU can handle it and can speed up our training significantly. We can also have number of workers for data loading be 2, since we are using Brev. The transforms are applied to the dataset to "generate" more data by applying natural transformations. For example, mirroring a face about the y axis does not modify the emotion shown on the face. The convolutional layers simplify the image down to its most critical features, while the classification layer converts the 2d image into a 1d tensor of numbers and outputs one of 7 emotion classes.
 
 Dataset statistics:
 
@@ -19,7 +19,7 @@ Test samples: 7178
 
 ## NVIDIA Brev Platform
 
-1. Open the Brev console and ensure you have credits, navigate to the T4 GPU option. [Create a new T4 environment here.](https://brev.nvidia.com/environment/new?gpu=T4)
+1. Open the Brev console and ensure you have credits, navigate to the L4 GPU option. [Create a new L4 environment here.](https://brev.nvidia.com/environment/new?gpu=L4)
 
 2. Select one of the GPUs and start the instance in VM mode, this project will not need Jupyter. You will name it here and use this name later.
 
@@ -33,7 +33,7 @@ emotion_detection_neural_network$ brev
 ls
 You have 1 instances in Org NCA-52c9-24166
  NAME                 STATUS   BUILD      SHELL  ID         MACHINE
- emotion-detector-t4  RUNNING  COMPLETED  READY  ur5syn8q7  n1-standard-1:nvidia-tesla-t4:1 (gpu)
+ emotion-detector-l4  RUNNING  COMPLETED  READY  ur5syn8q7  n1-standard-1:nvidia-tesla-l4:1 (gpu)
  ```
 
 5. Then, you must set up a SSH key on the server with: `ssh-keygen -t ed25519 -C "your-email@example.com"`. Copy the `cat ~/.ssh/id_ed25519.pub` and paste it in GitHub > Settings > SSH and GPG keys > new SSH key.
