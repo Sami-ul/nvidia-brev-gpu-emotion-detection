@@ -42,9 +42,26 @@ You have 1 instances in Org NCA-52c9-24166
 
 7. Install dependencies with `pip install -r requirements.txt`
 
-8. Download the dataset using `python3 data.py`
+8. Download the dataset using `python3 src/data.py`
 
-9. Train the neural network with `python3 train.py`
+9. Train the neural network with `python3 src/train.py`
+
+- One key thing to note is that since neural networks can take a while to train, it is not practical to stay SSHed in the entire time. One alternative is the following commands:
+
+```shell
+nohup python3 src/train.py > training.log 2>&1 &
+disown
+```
+
+`nohup`: avoids terminating when SSH disconnects
+
+`> training.log 2>&1`: this sends stdout and stderr to a log
+
+`&`: puts the command in the background
+
+`disown`: detaches it from the shell
+
+You can then view logs with `tail -f training.log`
 
 10. To monitor the training you can install the following:
 ```
