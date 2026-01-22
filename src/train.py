@@ -99,7 +99,7 @@ class Net(nn.Module):
         )
         self.classifier = nn.Sequential( # 2d->1d and classifies emotions
             nn.Flatten(),
-            nn.Linear(512 * 14 * 14, 512),
+            nn.Linear(512 * 7 * 7, 512),
             nn.ReLU(),
             nn.Dropout(0.3),
             nn.Linear(512, 7)
