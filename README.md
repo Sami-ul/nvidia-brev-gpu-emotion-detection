@@ -40,13 +40,15 @@ You have 1 instances in Org NCA-52c9-24166
 
 6. You can then clone the repository the code is on using ssh `git clone git@github.com:Sami-ul/nvidia-brev-gpu-emotion-detection.git` and navigate to the directory with `cd nvidia-brev-gpu-emotion-detection`.
 
+- You will need to sync up your SSH public key using your settings on the GitHub website, or you can use a PAT token and use HTTPS as well. With a PAT token when prompted for username enter your GitHub username and when prompted for password put the PAT token.
+
 7. Install dependencies with `pip install -r requirements.txt`
 
 8. Download the dataset using `python3 src/data.py`
 
 9. Train the neural network with `python3 src/train.py`
 
-- One key thing to note is that since neural networks can take a while to train, it is not practical to stay SSHed in the entire time. One alternative is the following commands:
+- One key thing to note is that since neural networks can take a while to train, it is not practical to stay SSHed in the entire time. If the SSH terminal disconnects, the SIGHUP signal will be sent in Linux and hence the program will close, even using the `&` postfix will not work due to this signal. One workaround is the following command using nohup (no hangup):
 
 ```shell
 nohup python3 src/train.py > training.log 2>&1 &
@@ -61,7 +63,7 @@ disown
 
 `disown`: detaches it from the shell
 
-You can then view logs with `tail -f training.log`
+You can then view logs with `tail -f training.log`. 
 
 10. To monitor the training you can install the following:
 ```
@@ -72,5 +74,7 @@ sudo reboot
 nvidia-smi -l 1
 ```
 
-11. You can then use the Brev website to delete your instance and stop incurring costs.
+11. Once the model is trained you can push the saved model to your git repo.
+
+12. You can then use the Brev website to delete your instance and stop incurring costs.
 
