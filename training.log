@@ -1,0 +1,97 @@
+nohup: ignoring input
+Using GPU NVIDIA L4
+Classes: ['angry', 'disgusted', 'fearful', 'happy', 'neutral', 'sad', 'surprised']
+Training samples: 28709
+Test samples: 7178
+[1,   200] loss: 2.860
+Epoch 1 took 94.1s
+Epoch 1 | Validation Accuracy: 24.07%
+Saved new best model with accuracy 24.07%
+[2,   200] loss: 1.731
+Epoch 2 took 67.6s
+Epoch 2 | Validation Accuracy: 34.63%
+Saved new best model with accuracy 34.63%
+[3,   200] loss: 1.611
+Epoch 3 took 67.5s
+Epoch 3 | Validation Accuracy: 42.23%
+Saved new best model with accuracy 42.23%
+[4,   200] loss: 1.519
+Epoch 4 took 66.6s
+Epoch 4 | Validation Accuracy: 43.79%
+Saved new best model with accuracy 43.79%
+[5,   200] loss: 1.458
+Epoch 5 took 66.6s
+Epoch 5 | Validation Accuracy: 47.63%
+Saved new best model with accuracy 47.63%
+[6,   200] loss: 1.387
+Epoch 6 took 69.0s
+Epoch 6 | Validation Accuracy: 48.96%
+Saved new best model with accuracy 48.96%
+[7,   200] loss: 1.337
+Epoch 7 took 67.4s
+Epoch 7 | Validation Accuracy: 50.64%
+Saved new best model with accuracy 50.64%
+[8,   200] loss: 1.253
+Epoch 8 took 65.6s
+Epoch 8 | Validation Accuracy: 54.19%
+Saved new best model with accuracy 54.19%
+[9,   200] loss: 1.236
+Epoch 9 took 67.3s
+Epoch 9 | Validation Accuracy: 54.37%
+Saved new best model with accuracy 54.37%
+[10,   200] loss: 1.215
+Epoch 10 took 67.2s
+Epoch 10 | Validation Accuracy: 55.46%
+Saved new best model with accuracy 55.46%
+[11,   200] loss: 1.210
+Epoch 11 took 66.8s
+Epoch 11 | Validation Accuracy: 55.36%
+[12,   200] loss: 1.197
+Epoch 12 took 67.5s
+Epoch 12 | Validation Accuracy: 55.96%
+Saved new best model with accuracy 55.96%
+[13,   200] loss: 1.192
+Epoch 13 took 67.7s
+Epoch 13 | Validation Accuracy: 56.02%
+Saved new best model with accuracy 56.02%
+[14,   200] loss: 1.179
+Epoch 14 took 67.5s
+Epoch 14 | Validation Accuracy: 56.39%
+Saved new best model with accuracy 56.39%
+[15,   200] loss: 1.159
+Epoch 15 took 66.7s
+Epoch 15 | Validation Accuracy: 57.19%
+Saved new best model with accuracy 57.19%
+[16,   200] loss: 1.157
+Epoch 16 took 67.2s
+Epoch 16 | Validation Accuracy: 56.94%
+[17,   200] loss: 1.153
+Epoch 17 took 66.2s
+Epoch 17 | Validation Accuracy: 57.01%
+[18,   200] loss: 1.145
+Epoch 18 took 66.5s
+Epoch 18 | Validation Accuracy: 57.13%
+[19,   200] loss: 1.152
+Epoch 19 took 67.6s
+Epoch 19 | Validation Accuracy: 57.16%
+[20,   200] loss: 1.144
+Epoch 20 took 65.5s
+Epoch 20 | Validation Accuracy: 57.06%
+[21,   200] loss: 1.148
+Epoch 21 took 67.0s
+Epoch 21 | Validation Accuracy: 57.29%
+Saved new best model with accuracy 57.29%
+[22,   200] loss: 1.145
+Epoch 22 took 68.7s
+Epoch 22 | Validation Accuracy: 57.27%
+[23,   200] loss: 1.145
+Epoch 23 took 67.3s
+Epoch 23 | Validation Accuracy: 57.37%
+Saved new best model with accuracy 57.37%
+[24,   200] loss: 1.144
+Epoch 24 took 67.0s
+Epoch 24 | Validation Accuracy: 57.22%
+[25,   200] loss: 1.139
+Epoch 25 took 67.7s
+Epoch 25 | Validation Accuracy: 57.33%
+Done training! Best model with accuracy 57.37%
